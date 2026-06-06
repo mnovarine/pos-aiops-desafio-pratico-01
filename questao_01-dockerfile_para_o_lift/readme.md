@@ -17,6 +17,10 @@ Claude Sonnet 4.6
 
 ## Output
 
+[lift/Dockerfile](lift/Dockerfile)
+
+## Output do Prompt
+
 Multi-stage build (2 estágios):
 
 - `builder` — usa `python:3.12-alpine` com `gcc`, `musl-dev` e `libpq-dev` apenas para compilar as dependências (incluindo `psycopg2-binary` que precisa de headers C). Os pacotes são instalados em `/install`.
