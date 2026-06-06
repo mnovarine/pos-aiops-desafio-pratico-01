@@ -1,0 +1,14 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: chronos-api-pdb
+  namespace: production
+  labels:
+    app: chronos-api
+spec:
+  # Garante que no mínimo 2 pods estejam disponíveis durante
+  # eventos de disrupção voluntária (drain de nó, rolling update, etc.)
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: chronos-api
