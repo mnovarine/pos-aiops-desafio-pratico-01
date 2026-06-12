@@ -5,6 +5,8 @@ O resultado foi bem parecido, mas o do Claude Sonnet 4.6 ficou melhor documentad
 
 # Justificativa
 
+## Como os componentes aparecem no prompt
+
 **Context**
 
 Esta seção define o cenário e as regras que a IA deve seguir.

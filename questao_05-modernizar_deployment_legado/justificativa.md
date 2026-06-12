@@ -17,6 +17,8 @@ Arquivo `secret.yaml`
 
 # Justificativa
 
+## Como os componentes aparecem no prompt
+
 **Before**
 
 Esta seção descreve o estado inicial e problemático do Deployment da chronos-api. É o ponto de partida.

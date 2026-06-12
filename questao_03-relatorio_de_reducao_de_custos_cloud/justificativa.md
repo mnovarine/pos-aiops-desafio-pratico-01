@@ -5,6 +5,8 @@ O modelo Claude Sonnet 4.6 gerou um relatório mais organizado e mais completo n
 
 # Justificativa
 
+## Como os componentes aparecem no prompt
+
 **Task**
 
 No prompt: Crie um plano com as oportunidades de redução de custo de cloud sem degradar o SLA.

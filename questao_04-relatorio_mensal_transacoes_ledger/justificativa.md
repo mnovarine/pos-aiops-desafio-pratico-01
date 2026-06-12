@@ -5,6 +5,8 @@ O resultado das duas queries foram bem parecidos.
 
 # Justificativa
 
+## Como os componentes aparecem no prompt
+
 **Task**
 
 No prompt: Você é o Product Manager e precisa apresentar para a CEO as informações sobre crescimento de transações.

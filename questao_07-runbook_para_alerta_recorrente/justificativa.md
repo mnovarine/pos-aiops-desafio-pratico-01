@@ -5,6 +5,8 @@ O modelo Claude Sonnet 4.6 gerou um procedimento um pouco mais completo e organi
 
 # Justificativa
 
+## Como os componentes aparecem no prompt
+
 **Role**
 
 O prompt define claramente a persona que a IA deve assumir. Isso ajuda a IA a entender o tom, o nível de conhecimento técnico e o objetivo da resposta.

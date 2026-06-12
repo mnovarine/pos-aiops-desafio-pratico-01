@@ -1,4 +1,6 @@
-Ler o prompt no arquivo prommt.md e criar a documentação de acordo com os padrões abaixo.
+# Gerar documentação de prompt
+
+Ler o prompt no arquivo prompt.md e criar a documentação de acordo com os padrões abaixo.
 
 - Inferir metadados
 
@@ -30,13 +32,3 @@ inputs:
 ```
 
 A documentação deverá ficar no arquivo readme.md
-
-
-
-
-
-
-
-
-
-Mostrar como os componentes do framework R-T-F, indicado no enunciado abaixo aparecem no prompt.

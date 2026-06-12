@@ -5,6 +5,8 @@ O modelo Claude Sonnet 4.6 gerou um script mais estruturado e organizado, separa
 
 # Justificativa
 
+## Como os componentes aparecem no prompt
+
 **Role**
 
 No prompt: Você é um SRE sênior responsável por automatizar rotinas operacionais.

@@ -4,6 +4,8 @@ Fiz um teste com o modelo Gemini 2.5 Pro e gerou exatamente o mesmo resultado. E
 
 # Justificativa
 
+## Como os componentes aparecem no prompt
+
 **Role**
 
 Enunciado: "O Lift vai sair das VMs onde vem rodando e entrar no cluster Kubernetes da empresa."

@@ -1,13 +1,13 @@
 ## Prompt
 
 
+```markdown
 # Action
 Faça uma análise estruturada: liste as 5 causas mais prováveis em ordem de probabilidade, para cada causa indique o comando ou métrica AWS para validar, e proponha a ação corretiva imediata.
 
 # Goal
 Objetivo: produzir uma análise de causa raiz preliminar em formato de documento que permita ao time de plantão identificar e corrigir a causa raiz em até 2 horas, priorizando ações de menor risco primeiro.
 
-```markdown
 # Task
 Criar um documento técnico de post-mortem com base nos dados abaixo:
 
@@ -63,7 +63,6 @@ Use o formato:
 - Causa raiz
 - Ações corretivas (com responsável sugerido e prazo)
 - Ações preventivas
-
 
 # Goal
 Decidir entre rollback do deploy v2.48.0 (que subiu ontem) e scaling emergencial (aumento de limits do RDS e do pool de conexões).
