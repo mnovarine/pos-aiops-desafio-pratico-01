@@ -1,46 +1,23 @@
----
-nome: Criar Dockerfile para Aplicação Python
-descricao: Gera um Dockerfile otimizado para aplicação Python com multi-stage build e boas práticas para containerização em Kubernetes.
-versao: 1.0.0
-tags: [dockerfile, python, kubernetes, containerização, migração]
-modelo: Claude Sonnet 4.6
-inputs:
-  - nome: DATABASE_URL
-    descricao: String de conexão com o banco de dados utilizado pela aplicação
-  - nome: API_KEY
-    descricao: Chave de API utilizada pela aplicação em tempo de execução
----
+## Prompt
 
-# Criar Dockerfile para Aplicação Python
+```
+# Role
+Você é um engenheiro sênior responsável por migrar aplicações que rodam em VM para um ambiente kubernetes.
 
-## Objetivo
+# Task
+Crie um dockerfile com a aplicação python no path /lift. O docker file deve conter as variáveis de ambiente DATABASE_URL e API_KEY, e o comando a ser executado para iniciar a aplicação deve ser "gunicorn --bind 0.0.0.0:8080 --workers 4 app:app". Utilizar as melhores práticas para criação de dockerfile, para reduzir ao máximo o tamanho da imagem.
 
-Gerar um Dockerfile para uma aplicação Python localizada no path `/lift`, destinada a rodar em um ambiente Kubernetes. O arquivo deve declarar as variáveis de ambiente `DATABASE_URL` e `API_KEY`, iniciar a aplicação via `gunicorn --bind 0.0.0.0:8080 --workers 4 app:app`, e seguir as melhores práticas de criação de Dockerfiles para reduzir ao máximo o tamanho da imagem final. O arquivo gerado deve ser comentado, com cabeçalho explicando como construir a imagem e as variáveis configuráveis.
-
-## Quando usar
-
-- Ao migrar uma aplicação Python de VM para um ambiente Kubernetes.
-- Quando a aplicação requer variáveis de ambiente de banco de dados e autenticação configuráveis em tempo de execução.
-- Ao precisar de um Dockerfile comentado e documentado, pronto para uso e revisão em equipe.
-- Quando o objetivo é minimizar o tamanho da imagem Docker seguindo boas práticas (multi-stage build, imagem base mínima, usuário não-root).
-
-## Exemplo de uso
-
-```bash
-# Construir a imagem
-docker build -t lift:latest .
-
-# Executar o container
-docker run -d \
-  -e DATABASE_URL="postgresql://user:password@host:5432/dbname" \
-  -e API_KEY="sua-api-key-aqui" \
-  -p 8080:8080 \
-  lift:latest
+# Format
+Arquivo dockerfile comentado com cabeçalho explicando uso de como criar uma imagem e variáveis configuráveis no topo do arquivo.
 ```
 
-Output: [lift/Dockerfile](lift/Dockerfile)
+## Modelo
 
----
+Claude Sonnet 4.6
+
+## Output
+
+[lift/Dockerfile](lift/Dockerfile)
 
 ## Output do Prompt
 
