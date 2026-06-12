@@ -1,6 +1,6 @@
 ## Prompt
 
-```
+```markdown
 # Task
 Crie um plano com as oportunidades de redução de custo de cloud sem degradar o SLA.
 

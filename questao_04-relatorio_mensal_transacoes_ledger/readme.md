@@ -1,44 +1,30 @@
-## Prompt
+---
+nome: Relatório Mensal de Transações por Categoria
+descricao: Gera query SQL consolidando transações dos últimos 6 meses por categoria e mês para apresentação gerencial.
+versao: 1.0.0
+tags: [sql, postgresql, transações, relatório, product-management]
+modelo: Claude Sonnet 4.6
+inputs:
+  - nome: data_referencia
+    descricao: Data de referência para calcular a janela dos últimos 6 meses corridos (formato YYYY-MM-DD).
+---
 
-```
-# Task
-Você é o Product Manager e precisa apresentar para a CEO as informações sobre crescimento de transações.
+# Relatório Mensal de Transações por Categoria
 
-# Action
-Listar as informações por categorias em produção hoje: subscription, one_time, refund e credit_adjustment. Somente quem tem status = 'completed'. O campo amount_cents está em centavos de real e precisa aparecer na saída em reais com 2 casas decimais. O recorte é dos últimos 6 meses corridos a partir de hoje (2026-04-24), agrupado por mês (no formato YYYY-MM) e por categoria, trazendo duas métricas por linha: quantidade de transações e volume total em reais. Ordenação final: mês crescente, depois categoria crescente.
+## Objetivo
 
-As informações do histórico completo estão armazenadas no PostgreSQL no formato abaixo:
+Criar uma query SQL PostgreSQL que consolide as transações com status `completed` dos últimos 6 meses corridos, agrupadas por mês (formato `YYYY-MM`) e categoria (`subscription`, `one_time`, `refund`, `credit_adjustment`). Cada linha traz a quantidade de transações e o volume total em reais (convertido de centavos), com ordenação por mês e categoria crescentes — destinado à apresentação de crescimento de transações para a CEO.
 
-CREATE TABLE transactions (
-  id              BIGSERIAL PRIMARY KEY,
-  customer_id     BIGINT NOT NULL REFERENCES customers(id),
-  category        VARCHAR(32) NOT NULL,
-  amount_cents    BIGINT NOT NULL,
-  status          VARCHAR(16) NOT NULL,
-  payment_method  VARCHAR(16),
-  created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  completed_at    TIMESTAMPTZ
-);
+## Quando usar
 
-CREATE INDEX idx_transactions_created_at ON transactions(created_at);
-CREATE INDEX idx_transactions_status ON transactions(status);
-CREATE INDEX idx_transactions_category ON transactions(category);
-CREATE TABLE customers (
-  id          BIGSERIAL PRIMARY KEY,
-  segment     VARCHAR(16) NOT NULL,
-  country     CHAR(2) NOT NULL,
-  signup_at   TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
+- Necessário apresentar métricas de crescimento de transações para liderança executiva.
+- Geração de relatório mensal de performance financeira segmentado por categoria de transação.
+- Análise de tendências em volume e quantidade de transações ao longo dos últimos 6 meses.
+- Quando o campo monetário está armazenado em centavos e precisa ser convertido para reais na saída.
 
-# Goal
-Objetivo: Criar uma query SQL que liste os números consolidados nos últimos 6 meses por categoria.
-```
+## Exemplo de uso
 
-## Modelo
-
-Claude Sonnet 4.6
-
-## Output
+**Query gerada:**
 
 ```sql
 SELECT
@@ -55,12 +41,8 @@ GROUP BY 1, 2
 ORDER BY 1, 2;
 ```
 
-### Explicação das decisões
+## Limitações conhecidas
 
-| Ponto | Decisão |
-|---|---|
-| Janela temporal | `DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '5 months'` cobre o início do mês atual menos 5 = 6 meses corridos inclusive o mês atual |
-| Filtro de data | `< DATE_TRUNC(...) + INTERVAL '1 month'` garante que o mês atual seja incluído por completo sem depender de horário |
-| Conversão de centavos | `SUM(amount_cents) / 100.0` usa divisão de ponto flutuante antes do `ROUND(..., 2)` para evitar truncamento inteiro |
-| Formato do mês | `TO_CHAR(created_at, 'YYYY-MM')` produz exatamente `YYYY-MM` como pedido |
-| Ordenação | `ORDER BY 1, 2` — mês crescente, depois categoria crescente (alfabética) |
+- A janela temporal é baseada em `created_at`, não em `completed_at`; transações criadas fora da janela mas concluídas dentro dela não serão incluídas.
+- A ordenação de categoria é alfabética — não reflete prioridade de negócio ou volume.
+- O mês vigente pode estar incompleto se a query for executada antes do encerramento do mês.
