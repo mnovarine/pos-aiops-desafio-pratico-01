@@ -30,3 +30,13 @@ inputs:
 ```
 
 A documentação deverá ficar no arquivo readme.md
+
+
+
+
+
+
+
+
+
+Mostrar como os componentes do framework R-T-F, indicado no enunciado abaixo aparecem no prompt.

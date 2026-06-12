@@ -2,7 +2,7 @@
 
 ```markdown
 # Role
-Você é um SRE responsável pelo plantão e por criar runbooks e procedimentos documentados.
+Você é um SRE responsáve pelo plantão e por criar runbooks e procedimentos documentados.
 
 # Input
 - Ambiente: API Chronos roda no EKS, namespace production, 6 réplicas com HPA configurado (min 4, max 12, CPU target 70%).

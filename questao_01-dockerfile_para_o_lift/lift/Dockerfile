@@ -51,13 +51,14 @@ RUN apk add --no-cache libpq
 # Cria usuário não-root para executar a aplicação (princípio do menor privilégio)
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-WORKDIR /app
+WORKDIR /lift
 
 # Copia pacotes Python instalados no estágio builder
 COPY --from=builder /install /usr/local
 
 # Copia o código-fonte da aplicação
-COPY --chown=appuser:appgroup . .
+COPY --chown=appuser:appgroup app.py .
+COPY --chown=appuser:appgroup lib/ lib/
 
 # Variáveis de ambiente obrigatórias — sobrescreva ao executar o container
 ENV DATABASE_URL=""
